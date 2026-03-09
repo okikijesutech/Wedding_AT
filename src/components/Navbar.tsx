@@ -33,7 +33,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         <Link href="/" className="text-2xl font-serif tracking-widest text-gold uppercase">
-          A & T
+          À & Ó
         </Link>
 
         {/* Desktop Nav */}

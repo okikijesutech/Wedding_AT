@@ -19,7 +19,7 @@ const timelineEvents = [
   {
     date: "Jan 2025",
     title: "The Proposal",
-    description: "Amidst the whispers of the sea, Ajibola asked Tolulope to spend forever with him. Of course, she said yes!",
+    description: "Amidst the whispers of the sea, Àjìbọ́lá asked Olúwadárasími to spend forever with him. Of course, she said yes!",
     image: "/images/Photoshoot 2.jpeg",
   },
 ];

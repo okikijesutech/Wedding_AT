@@ -12,7 +12,7 @@ const recommendations = [
   {
     icon: <Hotel size={24} />,
     title: "Accommodations",
-    description: "We've reserved a block of rooms at The Pearl Lagos. Mention 'Ajibola & Tolulope Wedding' for a special discount.",
+    description: "We've reserved a block of rooms at The Pearl Lagos. Mention 'Àjìbọ́lá & Olúwadárasími Wedding' for a special discount.",
     link: "#",
   },
   {

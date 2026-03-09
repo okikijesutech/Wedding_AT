@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion } from "framer-motion";
-import { supabase } from "@/lib/supabase";
 import { Check } from "lucide-react";
 
 const rsvpSchema = z.object({
@@ -35,11 +34,20 @@ export default function RSVP() {
   const onSubmit = async (data: RSVPFormValues) => {
     setIsSubmitting(true);
     try {
-      // Add a small delay for better UX with mock
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("https://formsubmit.co/ajax/your-email@example.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: `New Wedding RSVP from ${data.name}`,
+        })
+      });
+
+      if (!response.ok) throw new Error("Form submission failed");
       
-      const { error } = await supabase.from("rsvps").insert([data]);
-      if (error) throw error;
       setIsSubmitted(true);
       reset();
     } catch (error) {
@@ -62,7 +70,7 @@ export default function RSVP() {
           <span className="text-sm uppercase tracking-[0.3em] text-gold mb-4 block">Be Our Guest</span>
           <h2 className="text-4xl md:text-6xl font-serif">RSVP</h2>
           <p className="mt-6 text-charcoal-light font-light italic">
-            Please respond by February 7, 2026. We can&apos;t wait to celebrate with you!
+            Please respond by February 28, 2026. We can&apos;t wait to celebrate with you!
           </p>
         </motion.div>
 

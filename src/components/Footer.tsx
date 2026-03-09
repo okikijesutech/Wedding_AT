@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className="py-24 bg-ivory border-t border-gold/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif mb-6">Ajibola & Tolulope</h2>
-          <p className="text-gold tracking-[0.3em] uppercase text-sm mb-12">07 . 03 . 2026</p>
+          <h2 className="text-3xl md:text-5xl font-serif mb-6">Àjìbọ́lá & Olúwadárasími</h2>
+          <p className="text-gold tracking-[0.3em] uppercase text-sm mb-12">28 . 03 . 2026</p>
           <div className="flex justify-center items-center space-x-2 text-charcoal/50">
             <span>Made with</span>
             <Heart size={14} className="text-red-400 fill-red-400" />
@@ -42,12 +42,12 @@ export default function Footer() {
 
           <div className="md:text-right">
             <h4 className="font-serif text-lg mb-6 uppercase tracking-widest">Hashtag</h4>
-            <p className="text-2xl font-serif text-gold">#AjibolaTolulope2026</p>
+            <p className="text-2xl font-serif text-gold">#Àjìbọ́láOlúwadárasími2026</p>
           </div>
         </div>
 
         <div className="mt-24 text-center text-xs uppercase tracking-[0.2em] text-charcoal/30">
-          &copy; 2026 Ajibola & Tolulope Wedding Site. All Rights Reserved.
+          &copy; 2026 Àjìbọ́lá & Olúwadárasími Wedding Site. All Rights Reserved.
         </div>
       </div>
     </footer>

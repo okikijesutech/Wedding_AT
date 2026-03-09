@@ -5,16 +5,22 @@ import { MapPin, Calendar, Clock } from "lucide-react";
 
 const details = [
   {
-    title: "The Ceremony",
-    time: "Saturday, March 7, 2026 | 12:00 PM",
-    location: "St. John's Cathedral, Lagos",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.728242487311!2d3.4011!3d6.4491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2sSt.%20John's%20Cathedral!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng",
+    title: "Traditional Wedding",
+    time: "Saturday, March 28, 2026 | 7:00 AM",
+    location: "Dictatorate of Christian Education Hall, Mowe, Ogun State",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.1!2d3.4!3d6.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDgnMDAuMCJOIDPCsDI0JzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng",
+  },
+  {
+    title: "White Wedding",
+    time: "Saturday, March 28, 2026 | 11:00 AM",
+    location: "RCCG Gate of Heaven Zonal HQTS, Mowe, Ogun State",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.1!2d3.4!3d6.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDgnMDAuMCJOIDPCsDI0JzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng",
   },
   {
     title: "The Reception",
-    time: "Saturday, March 7, 2026 | 3:00 PM",
-    location: "Grand Pearl Ballroom, Victoria Island",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.728242487311!2d3.4211!3d6.4291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2sVictoria%20Island!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng",
+    time: "Saturday, March 28, 2026 | 1:00 PM",
+    location: "Dictatorate of Christian Education Hall, Mowe, Ogun State",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.1!2d3.4!3d6.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDgnMDAuMCJOIDPCsDI0JzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng",
   },
 ];
 
@@ -32,7 +38,7 @@ export default function Details() {
           <h2 className="text-4xl md:text-6xl font-serif">Wedding Details</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-3 gap-12">
           {details.map((detail, index) => (
             <motion.div
               key={index}
@@ -73,6 +79,33 @@ export default function Details() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-24 text-center border-t border-gold/10 pt-24"
+        >
+          <span className="text-sm uppercase tracking-[0.3em] text-gold mb-8 block">Color of the Day</span>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-white border border-charcoal/10 mb-4 shadow-sm" />
+              <p className="text-xs uppercase tracking-widest font-light">White</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-[#1e40af] mb-4 shadow-sm" />
+              <p className="text-xs uppercase tracking-widest font-light">Blue</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-[#c8a2c8] mb-4 shadow-sm" />
+              <p className="text-xs uppercase tracking-widest font-light">Lilac</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 rounded-full bg-[#98ff98] mb-4 shadow-sm" />
+              <p className="text-xs uppercase tracking-widest font-light">Mint Green</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

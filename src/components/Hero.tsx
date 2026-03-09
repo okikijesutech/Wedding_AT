@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/Photoshoot 1.jpeg"
-          alt="Ajibola & Tolulope"
+          alt="Àjìbọ́lá & Olúwadárasími"
           fill
           priority
           className="object-cover object-center scale-105 animate-slow-zoom"
@@ -29,7 +29,7 @@ export default function Hero() {
             We are getting married
           </span>
           <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif mb-8 leading-tight">
-            Ajibola <span className="text-gold tracking-tighter">&</span> Tolulope
+            Àjìbọ́lá <span className="text-gold tracking-tighter">&</span> Olúwadárasími
           </h1>
           <p className="text-lg md:text-2xl tracking-[0.2em] font-light mb-12 italic">
             28 . 03 . 2026
@@ -41,7 +41,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
         >
-          <Countdown targetDate="2026-03-28T12:00:00" />
+          <Countdown targetDate="2026-03-28T07:00:00" />
         </motion.div>
 
         <motion.div

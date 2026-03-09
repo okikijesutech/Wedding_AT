@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const images = [
-  { src: "/images/Photoshoot 1.jpeg", alt: "Ajibola & Tolulope 1", aspect: "aspect-[4/5]" },
-  { src: "/images/Photoshoot 2.jpeg", alt: "Ajibola & Tolulope 2", aspect: "aspect-[1/1]" },
-  { src: "/images/Photoshoot 3.jpeg", alt: "Ajibola & Tolulope 3", aspect: "aspect-[4/5]" },
-  { src: "/images/Photoshoot 1.jpeg", alt: "Ajibola & Tolulope 4", aspect: "aspect-[1/1]" },
-  { src: "/images/Photoshoot 2.jpeg", alt: "Ajibola & Tolulope 5", aspect: "aspect-[4/5]" },
-  { src: "/images/Photoshoot 3.jpeg", alt: "Ajibola & Tolulope 6", aspect: "aspect-[1/1]" },
+  { src: "/images/Photoshoot 1.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 1", aspect: "aspect-[4/5]" },
+  { src: "/images/Photoshoot 2.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 2", aspect: "aspect-[1/1]" },
+  { src: "/images/Photoshoot 3.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 3", aspect: "aspect-[4/5]" },
+  { src: "/images/Photoshoot 1.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 4", aspect: "aspect-[1/1]" },
+  { src: "/images/Photoshoot 2.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 5", aspect: "aspect-[4/5]" },
+  { src: "/images/Photoshoot 3.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 6", aspect: "aspect-[1/1]" },
 ];
 
 export default function Gallery() {
