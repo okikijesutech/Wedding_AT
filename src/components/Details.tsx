@@ -65,7 +65,7 @@ export default function Details() {
                 </div>
               </div>
 
-              <div className="w-full h-64 relative rounded-sm overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+              <div className="w-full h-64 relative rounded-sm overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 mb-8">
                 <iframe
                   src={detail.mapUrl}
                   width="100%"
@@ -76,6 +76,15 @@ export default function Details() {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
+
+              <a 
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(detail.location)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 border border-gold/30 text-xs uppercase tracking-widest text-gold hover:bg-gold hover:text-ivory transition-all duration-300 rounded-sm"
+              >
+                Open in Google Maps
+              </a>
             </motion.div>
           ))}
         </div>
