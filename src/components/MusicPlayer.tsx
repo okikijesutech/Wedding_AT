@@ -5,61 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-declare global {
-  interface Window {
-    onYouTubeIframeAPIReady: () => void;
-    YT: any;
-  }
-}
-
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [isReady, setIsReady] = useState(false);
-  const playerRef = useRef<any>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Load YouTube API
-    if (!window.YT) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-      window.onYouTubeIframeAPIReady = () => {
-        initPlayer();
-      };
-    } else {
-      initPlayer();
-    }
-
-    function initPlayer() {
-      playerRef.current = new window.YT.Player("youtube-player", {
-        height: "0",
-        width: "0",
-        videoId: "5S32MpFWaAs", // Khaid & Boy Spyce - Carry Me Go
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          disablekb: 1,
-          enablejsapi: 1,
-          loop: 1,
-          playlist: "5S32MpFWaAs",
-        },
-        events: {
-          onReady: () => setIsReady(true),
-          onStateChange: (event: any) => {
-            if (event.data === window.YT.PlayerState.PLAYING) setIsPlaying(true);
-            if (event.data === window.YT.PlayerState.PAUSED) setIsPlaying(false);
-          },
-        },
-      });
-    }
-
-    // Interaction handler for autoplay
+    // Try to autoplay after first user interaction
     const handleFirstInteraction = () => {
-      if (playerRef.current && isReady && !isPlaying) {
-        playerRef.current.playVideo();
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.play().catch((e) => console.log("Autoplay blocked:", e));
         setIsPlaying(true);
         window.removeEventListener("click", handleFirstInteraction);
         window.removeEventListener("touchstart", handleFirstInteraction);
@@ -73,41 +28,40 @@ export default function MusicPlayer() {
       window.removeEventListener("click", handleFirstInteraction);
       window.removeEventListener("touchstart", handleFirstInteraction);
     };
-  }, [isReady, isPlaying]);
+  }, [isPlaying]);
 
   const togglePlay = () => {
-    if (playerRef.current && isReady) {
+    if (audioRef.current) {
       if (isPlaying) {
-        playerRef.current.pauseVideo();
+        audioRef.current.pause();
       } else {
-        playerRef.current.playVideo();
+        audioRef.current.play();
       }
       setIsPlaying(!isPlaying);
     }
   };
 
   const toggleMute = () => {
-    if (playerRef.current && isReady) {
-      if (isMuted) {
-        playerRef.current.unMute();
-      } else {
-        playerRef.current.mute();
-      }
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
     }
   };
 
   return (
     <div className="fixed bottom-8 left-8 z-[100]">
-      <div id="youtube-player" className="hidden" />
+      <audio
+        ref={audioRef}
+        loop
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" // Standard Audio source
+      />
       
       <div className="flex items-center gap-4">
         {/* Play/Pause Button */}
         <button
           onClick={togglePlay}
-          disabled={!isReady}
           className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-xl disabled:opacity-50",
+            "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-xl",
             isPlaying ? "bg-gold text-ivory" : "bg-ivory text-gold border border-gold/20"
           )}
         >
@@ -134,7 +88,7 @@ export default function MusicPlayer() {
             >
               <div className="flex flex-col">
                 <span className="text-[10px] uppercase tracking-widest text-gold font-bold">Now Playing</span>
-                <span className="text-[11px] text-charcoal truncate max-w-[120px]">Carry Me Go - Khaid...</span>
+                <span className="text-[11px] text-charcoal truncate max-w-[120px]">Wedding Harmony...</span>
               </div>
               
               <button onClick={toggleMute} className="text-charcoal/60 hover:text-gold transition-colors">
