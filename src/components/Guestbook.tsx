@@ -5,14 +5,8 @@ import { motion } from "framer-motion";
 import { Send, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const sampleWishes = [
-  { name: "John & Mary", message: "Congratulations on your beautiful journey together! Wishing you a lifetime of love and happiness." },
-  { name: "Family Adeleke", message: "So happy for you both! May your home be filled with peace and laughter always." },
-  { name: "Sarah Bello", message: "A match made in heaven. Can't wait to celebrate with you!" },
-];
-
 export default function Guestbook() {
-  const [wishes, setWishes] = useState(sampleWishes);
+  const [wishes, setWishes] = useState<{name: string, message: string}[]>([]);
   const [formData, setFormData] = useState({ name: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -99,20 +93,32 @@ export default function Guestbook() {
           <div className="relative h-[600px] overflow-hidden rounded-sm border border-gold/10 bg-ivory p-8">
             <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-ivory to-transparent z-10" />
             
-            <div className="space-y-8 animate-scroll-vertical">
-              {[...wishes, ...wishes].map((wish, index) => (
-                <div key={index} className="p-8 border-b border-gold/5 last:border-0 hover:bg-champagne/5 transition-colors">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                      <User size={14} />
+            <div className={cn("space-y-8", wishes.length > 0 && "animate-scroll-vertical")}>
+              {wishes.length > 0 ? (
+                [...wishes, ...wishes].map((wish, index) => (
+                  <div key={index} className="p-8 border-b border-gold/5 last:border-0 hover:bg-champagne/5 transition-colors">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center text-gold">
+                        <User size={14} />
+                      </div>
+                      <span className="font-serif italic text-charcoal">{wish.name}</span>
                     </div>
-                    <span className="font-serif italic text-charcoal">{wish.name}</span>
+                    <p className="text-charcoal-light font-light leading-relaxed">
+                      &quot;{wish.message}&quot;
+                    </p>
                   </div>
+                ))
+              ) : (
+                <div className="h-full flex flex-col items-center justify-center text-center p-8">
+                  <div className="w-16 h-16 rounded-full bg-gold/5 flex items-center justify-center text-gold/30 mb-6">
+                    <User size={32} />
+                  </div>
+                  <h4 className="text-xl font-serif mb-4 text-charcoal">No wishes yet</h4>
                   <p className="text-charcoal-light font-light leading-relaxed">
-                    &quot;{wish.message}&quot;
+                    Be the first to add to the digital guest book and leave a message for the beautiful couple!
                   </p>
                 </div>
-              ))}
+              )}
             </div>
 
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-ivory to-transparent z-10" />
