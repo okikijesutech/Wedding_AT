@@ -12,12 +12,18 @@ const Guestbook = dynamic(() => import("@/components/Guestbook"));
 const Travel = dynamic(() => import("@/components/Travel"));
 const RSVP = dynamic(() => import("@/components/RSVP"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
-const MusicPlayer = dynamic(() => import("@/components/MusicPlayer"));
+const MusicPlayer = dynamic<{ autoPlayTrigger?: boolean }>(() => import("@/components/MusicPlayer"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
+import { useState } from "react";
+import EntranceSplash from "@/components/EntranceSplash";
+
 export default function Home() {
+  const [hasEntered, setHasEntered] = useState(false);
+
   return (
     <main className="relative min-h-screen">
+      {!hasEntered && <EntranceSplash onEnter={() => setHasEntered(true)} />}
       <Navbar />
       <Hero />
       <Story />
@@ -30,7 +36,7 @@ export default function Home() {
       <RSVP />
       <FAQ />
       <Footer />
-      <MusicPlayer />
+      <MusicPlayer autoPlayTrigger={hasEntered} />
     </main>
   );
 }

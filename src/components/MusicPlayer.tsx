@@ -14,12 +14,24 @@ declare global {
 
 import Script from "next/script";
 
-export default function MusicPlayer() {
+interface MusicPlayerProps {
+  autoPlayTrigger?: boolean;
+}
+
+export default function MusicPlayer({ autoPlayTrigger }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [showHint, setShowHint] = useState(true);
   const playerRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (autoPlayTrigger && playerRef.current && isReady && !isPlaying) {
+      playerRef.current.playVideo();
+      setIsPlaying(true);
+      setShowHint(false);
+    }
+  }, [autoPlayTrigger, isReady]);
 
   const initPlayer = () => {
     if (playerRef.current || !window.YT) return;
