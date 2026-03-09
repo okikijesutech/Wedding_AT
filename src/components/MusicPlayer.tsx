@@ -5,16 +5,61 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void;
+    YT: any;
+  }
+}
+
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isReady, setIsReady] = useState(false);
+  const playerRef = useRef<any>(null);
 
   useEffect(() => {
-    // Try to autoplay after first user interaction
+    // Load YouTube API
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        initPlayer();
+      };
+    } else {
+      initPlayer();
+    }
+
+    function initPlayer() {
+      playerRef.current = new window.YT.Player("youtube-player", {
+        height: "0",
+        width: "0",
+        videoId: "5S32MpFWaAs", // Khaid & Boy Spyce - Carry Me Go
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          enablejsapi: 1,
+          loop: 1,
+          playlist: "5S32MpFWaAs",
+        },
+        events: {
+          onReady: () => setIsReady(true),
+          onStateChange: (event: any) => {
+            if (event.data === window.YT.PlayerState.PLAYING) setIsPlaying(true);
+            if (event.data === window.YT.PlayerState.PAUSED) setIsPlaying(false);
+          },
+        },
+      });
+    }
+
+    // Interaction handler for autoplay
     const handleFirstInteraction = () => {
-      if (audioRef.current && !isPlaying) {
-        audioRef.current.play().catch((e) => console.log("Autoplay blocked:", e));
+      if (playerRef.current && isReady && !isPlaying) {
+        playerRef.current.playVideo();
         setIsPlaying(true);
         window.removeEventListener("click", handleFirstInteraction);
         window.removeEventListener("touchstart", handleFirstInteraction);
@@ -28,40 +73,41 @@ export default function MusicPlayer() {
       window.removeEventListener("click", handleFirstInteraction);
       window.removeEventListener("touchstart", handleFirstInteraction);
     };
-  }, [isPlaying]);
+  }, [isReady, isPlaying]);
 
   const togglePlay = () => {
-    if (audioRef.current) {
+    if (playerRef.current && isReady) {
       if (isPlaying) {
-        audioRef.current.pause();
+        playerRef.current.pauseVideo();
       } else {
-        audioRef.current.play();
+        playerRef.current.playVideo();
       }
       setIsPlaying(!isPlaying);
     }
   };
 
   const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
+    if (playerRef.current && isReady) {
+      if (isMuted) {
+        playerRef.current.unMute();
+      } else {
+        playerRef.current.mute();
+      }
       setIsMuted(!isMuted);
     }
   };
 
   return (
     <div className="fixed bottom-8 left-8 z-[100]">
-      <audio
-        ref={audioRef}
-        loop
-        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" // Placeholder for Nigerian Wedding song
-      />
+      <div id="youtube-player" className="hidden" />
       
       <div className="flex items-center gap-4">
         {/* Play/Pause Button */}
         <button
           onClick={togglePlay}
+          disabled={!isReady}
           className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-xl",
+            "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-xl disabled:opacity-50",
             isPlaying ? "bg-gold text-ivory" : "bg-ivory text-gold border border-gold/20"
           )}
         >
@@ -88,7 +134,7 @@ export default function MusicPlayer() {
             >
               <div className="flex flex-col">
                 <span className="text-[10px] uppercase tracking-widest text-gold font-bold">Now Playing</span>
-                <span className="text-[11px] text-charcoal truncate max-w-[120px]">Nigerian Wedding Mix...</span>
+                <span className="text-[11px] text-charcoal truncate max-w-[120px]">Carry Me Go - Khaid...</span>
               </div>
               
               <button onClick={toggleMute} className="text-charcoal/60 hover:text-gold transition-colors">
