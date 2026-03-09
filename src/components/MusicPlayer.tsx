@@ -12,6 +12,8 @@ declare global {
   }
 }
 
+import Script from "next/script";
+
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -19,48 +21,40 @@ export default function MusicPlayer() {
   const [showHint, setShowHint] = useState(true);
   const playerRef = useRef<any>(null);
 
-  useEffect(() => {
-    // Load YouTube API
-    if (!window.YT) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+  const initPlayer = () => {
+    if (playerRef.current || !window.YT) return;
+    
+    playerRef.current = new window.YT.Player("youtube-player", {
+      height: "0",
+      width: "0",
+      videoId: "XvwSzzvP9s0", // Official Timi Dakolo - Iyawo Mi
+      playerVars: {
+        autoplay: 0,
+        controls: 0,
+        disablekb: 1,
+        enablejsapi: 1,
+        loop: 1,
+        playlist: "XvwSzzvP9s0",
+      },
+      events: {
+        onReady: () => setIsReady(true),
+        onStateChange: (event: any) => {
+          if (event.data === window.YT.PlayerState.PLAYING) setIsPlaying(true);
+          if (event.data === window.YT.PlayerState.PAUSED) setIsPlaying(false);
+          if (event.data === window.YT.PlayerState.ENDED) {
+            playerRef.current.playVideo(); // Force loop
+          }
+        },
+      },
+    });
+  };
 
-      window.onYouTubeIframeAPIReady = () => {
-        initPlayer();
-      };
-    } else {
+  useEffect(() => {
+    if (window.YT && window.YT.Player) {
       initPlayer();
     }
 
-    function initPlayer() {
-      if (playerRef.current) return;
-      
-      playerRef.current = new window.YT.Player("youtube-player", {
-        height: "0",
-        width: "0",
-        videoId: "XvwSzzvP9s0", // Official Timi Dakolo - Iyawo Mi
-        playerVars: {
-          autoplay: 0,
-          controls: 0,
-          disablekb: 1,
-          enablejsapi: 1,
-          loop: 1,
-          playlist: "XvwSzzvP9s0",
-        },
-        events: {
-          onReady: () => setIsReady(true),
-          onStateChange: (event: any) => {
-            if (event.data === window.YT.PlayerState.PLAYING) setIsPlaying(true);
-            if (event.data === window.YT.PlayerState.PAUSED) setIsPlaying(false);
-            if (event.data === window.YT.PlayerState.ENDED) {
-              playerRef.current.playVideo(); // Force loop
-            }
-          },
-        },
-      });
-    }
+    // Interaction handler for autoplay
 
     // Interaction handler for autoplay
     const handleFirstInteraction = () => {
@@ -187,6 +181,21 @@ export default function MusicPlayer() {
           ))}
         </div>
       )}
+      {/* YouTube API Loader */}
+      <Script
+        src="https://www.youtube.com/iframe_api"
+        onLoad={() => {
+          // The API triggers a global callback when ready
+          window.onYouTubeIframeAPIReady = () => {
+            initPlayer();
+          };
+          // If already ready
+          if (window.YT && window.YT.Player) {
+            initPlayer();
+          }
+        }}
+        strategy="lazyOnload"
+      />
     </div>
   );
 }
