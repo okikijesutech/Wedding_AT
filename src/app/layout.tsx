@@ -13,8 +13,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "A Marriage of Love | Our Wedding",
+  metadataBase: new URL("https://your-wedding-site.com"),
+  title: "Àjìbọ́lá & Olúwadárasími | Our Wedding",
   description: "Join us in celebrating our wedding day. A cinematic journey of our love story.",
+  openGraph: {
+    title: "Àjìbọ́lá & Olúwadárasími | Our Wedding",
+    description: "Join us in celebrating our wedding day. A cinematic journey of our love story.",
+    url: "https://your-wedding-site.com",
+    siteName: "Àjìbọ́lá & Olúwadárasími Wedding",
+    images: [
+      {
+        url: "/images/og-image.jpg", // The user should add this or I can generate one if asked
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Àjìbọ́lá & Olúwadárasími | Our Wedding",
+    description: "Join us in celebrating our wedding day. A cinematic journey of our love story.",
+    images: ["/images/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({

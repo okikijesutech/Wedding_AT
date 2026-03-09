@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -27,9 +28,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled ? "py-4 glass shadow-sm" : "py-8 bg-transparent"
-      }`}
+      )}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         <Link href="/" className="text-2xl font-serif tracking-widest text-gold uppercase">
