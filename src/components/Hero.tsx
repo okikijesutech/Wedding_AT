@@ -14,6 +14,7 @@ export default function Hero() {
           alt="Àjìbọ́lá & Olúwadárasími"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center scale-105 animate-slow-zoom"
         />
         <div className="absolute inset-0 bg-black/40" />
