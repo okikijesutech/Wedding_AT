@@ -10,8 +10,6 @@ import Details from "@/components/Details";
 const Gallery = dynamic(() => import("@/components/Gallery"));
 const WeddingParty = dynamic(() => import("@/components/WeddingParty"));
 const Registry = dynamic(() => import("@/components/Registry"));
-const Guestbook = dynamic(() => import("@/components/Guestbook"));
-const Travel = dynamic(() => import("@/components/Travel"));
 const RSVP = dynamic(() => import("@/components/RSVP"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
 const MusicPlayer = dynamic<{ autoPlayTrigger?: boolean }>(() => import("@/components/MusicPlayer"));
@@ -33,8 +31,6 @@ export default function Home() {
       <Gallery />
       <WeddingParty />
       <Registry />
-      <Travel />
-      <Guestbook />
       <RSVP />
       <FAQ />
       <Footer />

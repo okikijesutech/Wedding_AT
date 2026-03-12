@@ -5,22 +5,22 @@ import Image from "next/image";
 
 const timelineEvents = [
   {
-    date: "Dec 2023",
+    date: "July 2025",
     title: "The First Meeting",
-    description: "It all started with a simple hello at a mutual friend's dinner. We spent the whole night talking about our dreams and shared passions.",
-    image: "/images/Photoshoot 1.jpeg",
-  },
-  {
-    date: "Feb 2024",
-    title: "Our First Date",
-    description: "A cozy rooftop picnic overlooking the city. We realized then that this was the start of something truly special.",
-    image: "/images/Photoshoot 3.jpeg",
-  },
-  {
-    date: "Jan 2025",
-    title: "The Proposal",
-    description: "Amidst the whispers of the sea, Àjìbọ́lá asked Olúwadárasími to spend forever with him. Of course, she said yes!",
+    description: "A simple notification that changed our lives forever. What began as a casual 'Hi' on Facebook Messenger blossomed into a deep, digital connection that eventually led us to this moment.",
     image: "/images/Photoshoot 2.jpeg",
+  },
+  {
+    date: "Aug 2025",
+    title: "Our First Date",
+    description: "We met for the first time in person at a cozy restaurant. What was meant to be a simple dinner turned into hours of laughter and the realization that we were meant to be.",
+    image: "/images/first_date.jpeg",
+  },
+  {
+    date: "Jan 2026",
+    title: "The Proposal",
+    description: "A secret kept by many, shared with the most important people in our lives. Under the guise of a family dinner in January 2026, Àjìbọ́lá orchestrated a breathtaking surprise. Surrounded by friends and family, he asked the question that made forever our reality.",
+    image: "/images/proposal.jpeg",
   },
 ];
 
