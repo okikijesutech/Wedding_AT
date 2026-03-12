@@ -6,10 +6,13 @@ import Image from "next/image";
 const images = [
   { src: "/images/Photoshoot 1.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 1", aspect: "aspect-[4/5]" },
   { src: "/images/Photoshoot 2.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 2", aspect: "aspect-[1/1]" },
-  { src: "/images/Photoshoot 3.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 3", aspect: "aspect-[4/5]" },
-  { src: "/images/first_date.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 4", aspect: "aspect-[1/1]" },
-  { src: "/images/proposal.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 5", aspect: "aspect-[4/5]" },
-  { src: "/images/Photoshoot 1.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 6", aspect: "aspect-[1/1]" },
+  { src: "/images/Photoshoot 4.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 3", aspect: "aspect-[4/5]" },
+  { src: "/images/Photoshoot 5.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 4", aspect: "aspect-[1/1]" },
+  { src: "/images/Photoshoot 6.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 5", aspect: "aspect-[4/5]" },
+  { src: "/images/Photoshoot 7.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 6", aspect: "aspect-[1/1]" },
+  { src: "/images/Photoshoot 3.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 7", aspect: "aspect-[4/5]" },
+  { src: "/images/first_date.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 8", aspect: "aspect-[1/1]" },
+  { src: "/images/proposal.jpeg", alt: "Àjìbọ́lá & Olúwadárasími 9", aspect: "aspect-[4/5]" },
 ];
 
 export default function Gallery() {

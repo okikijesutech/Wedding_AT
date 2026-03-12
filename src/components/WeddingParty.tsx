@@ -10,7 +10,7 @@ const weddingParty = [
     image: "/images/bestman.jpeg",
   },
   {
-    name: "Jane Smith",
+    name: "Oluwatobiloba joel-ola Helen",
     role: "Maid of Honor",
     image: "/images/bestlady.jpeg",
   },
