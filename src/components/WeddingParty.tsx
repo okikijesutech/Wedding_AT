@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const weddingParty = [
   {
-    name: "John Doe",
+    name: "Temidayo Oloye David",
     role: "Best Man",
     image: "/images/bestman.jpeg",
   },
