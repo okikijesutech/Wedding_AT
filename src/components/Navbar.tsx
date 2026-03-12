@@ -12,7 +12,6 @@ const navLinks = [
   { name: "Wedding", href: "#details" },
   { name: "Gallery", href: "#gallery" },
   { name: "Registry", href: "#registry" },
-  { name: "Guestbook", href: "#guestbook" },
   { name: "RSVP", href: "#rsvp" },
 ];
 

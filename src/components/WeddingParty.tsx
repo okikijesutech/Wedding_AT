@@ -7,22 +7,22 @@ const weddingParty = [
   {
     name: "John Doe",
     role: "Best Man",
-    image: "/images/Photoshoot 1.jpeg", // Placeholder updated
+    image: "/images/bestman.jpeg",
   },
   {
     name: "Jane Smith",
     role: "Maid of Honor",
-    image: "/images/Photoshoot 3.jpeg", // Placeholder updated
+    image: "/images/bestlady.jpeg",
   },
   {
     name: "Michael Brown",
     role: "Groomsman",
-    image: "/images/Photoshoot 1.jpeg", // Placeholder updated
+    image: "/images/Photoshoot 2.jpeg",
   },
   {
     name: "Sarah Wilson",
     role: "Bridesmaid",
-    image: "/images/Photoshoot 3.jpeg", // Placeholder updated
+    image: "/images/Photoshoot 3.jpeg",
   },
 ];
 
