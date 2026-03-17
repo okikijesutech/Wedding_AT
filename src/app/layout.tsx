@@ -39,6 +39,10 @@ export const metadata: Metadata = {
     description: "Join us in celebrating our wedding day. A cinematic journey of our love story.",
     images: ["/images/og-image.jpg"],
   },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
