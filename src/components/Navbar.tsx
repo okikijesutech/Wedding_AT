@@ -31,11 +31,11 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled ? "py-4 glass shadow-sm" : "py-8 bg-transparent"
+        isScrolled ? "py-4 glass shadow-lg border-b border-gold/10" : "py-8 bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-serif tracking-widest text-gold uppercase">
+        <Link href="/" className="text-2xl font-serif tracking-[0.2em] text-gold uppercase hover:scale-105 transition-transform duration-500">
           À & Ó
         </Link>
 
@@ -45,7 +45,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm uppercase tracking-widest hover:text-gold transition-colors duration-300"
+              className="text-sm uppercase tracking-widest hover:text-gold transition-colors duration-300 font-medium"
             >
               {link.name}
             </Link>
@@ -54,7 +54,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-charcoal"
+          className="md:hidden p-2 text-charcoal hover:bg-gold/5 rounded-full transition-all"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -68,14 +68,14 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-ivory border-t border-gold/10 overflow-hidden"
+            className="md:hidden glass border-t border-gold/10 overflow-hidden"
           >
-            <div className="flex flex-col space-y-6 p-8 items-center">
+            <div className="flex flex-col space-y-6 p-8 items-center bg-white/20">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm uppercase tracking-widest"
+                  className="text-sm uppercase tracking-widest font-bold hover:text-gold transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}

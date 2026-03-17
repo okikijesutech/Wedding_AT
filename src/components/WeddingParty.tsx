@@ -38,18 +38,18 @@ export default function WeddingParty() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="text-center group w-full max-w-[280px]"
+              className="text-center group w-full max-w-[280px] glass-card p-6 rounded-2xl hover:bg-white/60 hover:shadow-xl transition-all duration-500"
             >
-              <div className="relative aspect-[3/4] mb-6 overflow-hidden rounded-sm">
+              <div className="relative aspect-[3/4] mb-6 overflow-hidden rounded-xl shadow-inner">
                 <Image
                   src={person.image}
                   alt={person.name}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                 />
               </div>
-              <h3 className="text-xl md:text-2xl font-serif mb-1">{person.name}</h3>
-              <p className="text-xs md:text-sm uppercase tracking-widest text-gold font-light">{person.role}</p>
+              <h3 className="text-xl md:text-2xl font-serif mb-1 group-hover:text-gold transition-colors">{person.name}</h3>
+              <p className="text-xs md:text-sm uppercase tracking-widest text-gold font-bold">{person.role}</p>
             </motion.div>
           ))}
         </div>

@@ -30,18 +30,20 @@ export default function FAQ() {
           <h2 className="text-4xl md:text-6xl font-serif">Frequently Asked Questions</h2>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="border-b border-gold/10 pb-12"
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              className="glass-card p-10 rounded-2xl hover:bg-white/60 hover:shadow-xl hover:border-gold/30 transition-all duration-500 group"
             >
-              <h3 className="text-2xl font-serif mb-4">{faq.question}</h3>
-              <p className="text-charcoal-light font-light leading-relaxed">{faq.answer}</p>
+              <h3 className="text-2xl font-serif mb-6 group-hover:text-gold transition-colors">{faq.question}</h3>
+              <p className="text-charcoal-light font-light leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity">
+                {faq.answer}
+              </p>
             </motion.div>
           ))}
         </div>
