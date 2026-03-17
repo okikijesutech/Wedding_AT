@@ -6,11 +6,20 @@ import { Gift, Home, Plane, CreditCard, X, Copy, Check, ExternalLink } from "luc
 
 // --- Types & Data ---
 
-const bankDetails = {
-  account: "8125988097",
-  bank: "Moniepoint",
-  name: "Popoola ajibola"
-};
+const bankDetails = [
+  {
+    owner: "Groom's Account",
+    account: "8125988097",
+    bank: "Moniepoint",
+    name: "Popoola Ajibola"
+  },
+  {
+    owner: "Bride's Account",
+    account: "0124683991",
+    bank: "GTB",
+    name: "Oluwasina Toluwalope Funmilayo"
+  }
+];
 
 const homeItems = [
   { id: 1, name: "Premium Blender", price: "₦45,000", image: "https://images.unsplash.com/photo-1585238341267-1cfec2046a05?auto=format&fit=crop&q=80&w=300&h=300" },
@@ -106,25 +115,32 @@ export default function Registry() {
             <p className="text-charcoal-light font-light leading-relaxed text-center italic">
               "Your generosity means the world to us. Thank you for being a part of our journey."
             </p>
-            <div className="p-6 bg-white border border-gold/10 rounded-sm space-y-4 shadow-sm">
-              <div className="flex justify-between items-end">
-                <div className="flex flex-col">
-                  <span className="text-[10px] uppercase tracking-widest text-gold font-medium">Account Number</span>
-                  <span className="text-2xl font-serif tracking-widest text-charcoal leading-none">
-                    {bankDetails.account}
-                  </span>
+            <div className="grid gap-6">
+              {bankDetails.map((details, idx) => (
+                <div key={idx} className="p-6 bg-white border border-gold/10 rounded-sm space-y-4 shadow-sm relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 px-3 py-1 bg-gold/10 text-[9px] uppercase tracking-widest text-gold rounded-bl-sm">
+                    {details.owner}
+                  </div>
+                  <div className="flex justify-between items-end pt-2">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase tracking-widest text-gold font-medium mb-1">Account Number</span>
+                      <span className="text-2xl font-serif tracking-widest text-charcoal leading-none">
+                        {details.account}
+                      </span>
+                    </div>
+                    <button 
+                      onClick={() => copyToClipboard(details.account)}
+                      className="p-3 bg-gold/5 hover:bg-gold/10 rounded-full transition-colors"
+                    >
+                      {copied ? <Check size={18} className="text-green-600" /> : <Copy size={18} className="text-gold" />}
+                    </button>
+                  </div>
+                  <div className="pt-4 border-t border-gold/5 flex justify-between text-[11px] uppercase tracking-wider text-charcoal/60">
+                    <span>{details.bank}</span>
+                    <span className="text-right">{details.name}</span>
+                  </div>
                 </div>
-                <button 
-                  onClick={() => copyToClipboard(bankDetails.account)}
-                  className="p-3 bg-gold/5 hover:bg-gold/10 rounded-full transition-colors"
-                >
-                  {copied ? <Check size={18} className="text-green-600" /> : <Copy size={18} className="text-gold" />}
-                </button>
-              </div>
-              <div className="pt-4 border-t border-gold/5 flex justify-between text-[11px] uppercase tracking-wider text-charcoal/60">
-                <span>{bankDetails.bank}</span>
-                <span className="text-right">{bankDetails.name}</span>
-              </div>
+              ))}
             </div>
             {activeModal === "honeymoon" && (
               <p className="text-[10px] uppercase tracking-[0.2em] text-charcoal/40 text-center uppercase">
@@ -152,25 +168,34 @@ export default function Registry() {
                     <p className="text-sm text-charcoal/60">{pledgedItem.price}</p>
                   </div>
                   
-                  <div className="p-6 bg-white border border-gold/10 rounded-sm space-y-4 shadow-sm text-left">
+                  <div className="space-y-4 text-left">
                     <p className="text-[11px] text-charcoal/60 leading-relaxed text-center mb-4">
-                      Please transfer the amount for the <strong>{pledgedItem.name}</strong> to the account below.
+                      Please transfer the amount for the <strong>{pledgedItem.name}</strong> to any of the accounts below.
                     </p>
-                    <div className="flex justify-between items-end">
-                      <div className="flex flex-col">
-                        <span className="text-[9px] uppercase tracking-tighter text-gold mb-1">Account Number</span>
-                        <span className="text-xl font-serif tracking-widest leading-none">{bankDetails.account}</span>
-                      </div>
-                      <button 
-                        onClick={() => copyToClipboard(bankDetails.account)}
-                        className="p-2 border border-gold/10 rounded-full hover:bg-gold/10 transition-colors"
-                      >
-                        {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} className="text-gold" />}
-                      </button>
-                    </div>
-                    <div className="flex justify-between text-[10px] uppercase tracking-widest text-charcoal/40 pt-2 border-t border-gold/5">
-                      <span>{bankDetails.bank}</span>
-                      <span>{bankDetails.name}</span>
+                    <div className="grid gap-4">
+                      {bankDetails.map((details, idx) => (
+                        <div key={idx} className="p-5 bg-white border border-gold/10 rounded-sm space-y-3 shadow-sm relative overflow-hidden">
+                          <div className="absolute top-0 right-0 px-2 py-0.5 bg-gold/5 text-[8px] uppercase tracking-widest text-gold rounded-bl-sm">
+                            {details.owner}
+                          </div>
+                          <div className="flex justify-between items-end pt-1">
+                            <div className="flex flex-col">
+                              <span className="text-[9px] uppercase tracking-tighter text-gold mb-1">Account Number</span>
+                              <span className="text-xl font-serif tracking-widest leading-none">{details.account}</span>
+                            </div>
+                            <button 
+                              onClick={() => copyToClipboard(details.account)}
+                              className="p-2 border border-gold/10 rounded-full hover:bg-gold/10 transition-colors"
+                            >
+                              {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} className="text-gold" />}
+                            </button>
+                          </div>
+                          <div className="flex justify-between text-[10px] uppercase tracking-widest text-charcoal/40 pt-2 border-t border-gold/5">
+                            <span>{details.bank}</span>
+                            <span>{details.name}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
 

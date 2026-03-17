@@ -13,17 +13,7 @@ const weddingParty = [
     name: "Oluwatobiloba joel-ola Helen",
     role: "Maid of Honor",
     image: "/images/bestlady.jpeg",
-  },
-  {
-    name: "Michael Brown",
-    role: "Groomsman",
-    image: "/images/Photoshoot 2.jpeg",
-  },
-  {
-    name: "Sarah Wilson",
-    role: "Bridesmaid",
-    image: "/images/Photoshoot 3.jpeg",
-  },
+  }
 ];
 
 export default function WeddingParty() {
@@ -40,7 +30,7 @@ export default function WeddingParty() {
           <h2 className="text-4xl md:text-6xl font-serif">Bridesmaids & Groomsmen</h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="flex flex-wrap justify-center gap-8 md:gap-12">
           {weddingParty.map((person, index) => (
             <motion.div
               key={index}
@@ -48,7 +38,7 @@ export default function WeddingParty() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="text-center group"
+              className="text-center group w-full max-w-[280px]"
             >
               <div className="relative aspect-[3/4] mb-6 overflow-hidden rounded-sm">
                 <Image
