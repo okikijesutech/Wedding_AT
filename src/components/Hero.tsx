@@ -41,6 +41,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
+          className="glass-card bg-ivory/10 border-gold/20 p-8 rounded-3xl backdrop-blur-md"
         >
           <Countdown targetDate="2026-03-28T07:00:00" />
         </motion.div>

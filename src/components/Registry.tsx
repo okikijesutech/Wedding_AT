@@ -262,27 +262,27 @@ export default function Registry() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-10">
           {registries.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex flex-col p-12 bg-white border border-gold/10 rounded-sm hover:bg-champagne/5 hover:border-gold/30 transition-all duration-500 text-center"
+              transition={{ delay: index * 0.1, duration: 0.8 }}
+              className="group flex flex-col p-12 bg-white/40 glass-card rounded-3xl hover:bg-white/60 hover:shadow-2xl hover:border-gold/30 transition-all duration-700 hover:-translate-y-2 text-center"
             >
-              <div className="text-gold mb-10 flex justify-center transform group-hover:scale-110 transition-transform duration-500">
+              <div className="text-gold mb-10 flex justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                 {item.icon}
               </div>
-              <h3 className="text-2xl font-serif mb-6">{item.title}</h3>
-              <p className="text-charcoal-light font-light leading-relaxed mb-10 h-20 text-sm">
+              <h3 className="text-2xl font-serif mb-6 group-hover:text-gold transition-colors">{item.title}</h3>
+              <p className="text-charcoal-light font-light leading-relaxed mb-10 h-20 text-sm italic">
                 {item.description}
               </p>
 
               <button 
                 onClick={() => setActiveModal(item.id)}
-                className="mt-auto inline-flex items-center justify-center px-8 py-5 bg-charcoal text-ivory text-[10px] uppercase tracking-[0.3em] hover:bg-gold transition-all duration-500 rounded-sm gap-3 group"
+                className="mt-auto inline-flex items-center justify-center px-8 py-5 bg-charcoal text-ivory text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-gold transition-all duration-500 rounded-xl gap-3 group shadow-lg"
               >
                 {item.cta}
                 <motion.div
@@ -297,16 +297,16 @@ export default function Registry() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-24 p-12 bg-charcoal text-ivory rounded-sm text-center relative overflow-hidden"
+          className="mt-32 p-16 glass-dark text-ivory rounded-3xl text-center relative overflow-hidden shadow-2xl"
         >
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
-          <div className="relative z-10 flex flex-col items-center justify-center max-w-xl mx-auto">
-            <Gift className="text-gold mb-6" size={40} />
-            <h3 className="text-2xl font-serif mb-4 text-ivory">A Special Note</h3>
-            <p className="font-light text-ivory/70 leading-relaxed italic">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3" />
+          <div className="relative z-10 flex flex-col items-center justify-center max-w-2xl mx-auto">
+            <Gift className="text-gold mb-8 drop-shadow-glow" size={48} />
+            <h3 className="text-3xl font-serif mb-6 text-ivory tracking-wide">A Special Note</h3>
+            <p className="font-light text-ivory/80 leading-relaxed italic text-lg opacity-90">
               &quot;We are incredibly thankful for your love and support as we begin our life together. 
               The most important thing to us is having you there to celebrate our special day.&quot;
             </p>

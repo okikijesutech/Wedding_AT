@@ -115,59 +115,56 @@ export default function Details() {
           <h2 className="text-5xl md:text-7xl font-serif text-charcoal">Save The Date</h2>
         </m.div>
 
-        <div className="grid lg:grid-cols-3 gap-0 border border-charcoal/5 divide-y lg:divide-y-0 lg:divide-x divide-charcoal/5">
+        <div className="grid lg:grid-cols-3 gap-8">
           {details.map((detail, index) => (
             <m.div
               key={index}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: index * 0.2 }}
-              className="group relative p-12 md:p-20 flex flex-col items-center bg-white hover:bg-charcoal transition-all duration-700"
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="group relative p-12 flex flex-col items-center bg-white/40 glass-card rounded-3xl hover:bg-white/60 hover:shadow-2xl hover:border-gold/30 transition-all duration-700 hover:-translate-y-2"
             >
-              <span className="text-[10px] uppercase tracking-[0.5em] text-gold mb-12 group-hover:text-gold/80 transition-colors">
+              <span className="text-[10px] uppercase tracking-[0.5em] text-gold mb-12 font-bold">
                 {detail.month} {detail.year}
               </span>
 
               <div className="flex flex-col items-center mb-12">
-                <span className="text-xs uppercase tracking-widest text-charcoal/40 group-hover:text-white/40 transition-colors mb-2">
+                <span className="text-xs uppercase tracking-widest text-charcoal/40 transition-colors mb-2">
                   {detail.date}
                 </span>
-                <span className="text-6xl font-serif text-charcoal group-hover:text-white transition-colors leading-none">
+                <span className="text-6xl font-serif text-charcoal group-hover:text-gold transition-colors leading-none">
                   {detail.day}
                 </span>
               </div>
 
               <div className="h-24 flex flex-col items-center justify-center text-center px-4 mb-16">
-                <h3 className="text-3xl font-serif mb-4 text-charcoal group-hover:text-white transition-colors">
+                <h3 className="text-3xl font-serif mb-4 text-charcoal">
                   {detail.title}
                 </h3>
                 <div className="flex items-center gap-2 text-gold">
                   <Clock size={16} />
-                  <span className="text-xs uppercase tracking-widest font-medium">
+                  <span className="text-xs uppercase tracking-widest font-bold">
                     {detail.time}
                   </span>
                 </div>
               </div>
 
               <div className="text-center space-y-4 mb-12">
-                <div className="flex justify-center text-gold group-hover:text-white/60 transition-colors">
-                  <MapPin size={24} strokeWidth={1} />
+                <div className="flex justify-center text-gold">
+                  <MapPin size={24} strokeWidth={2} />
                 </div>
-                <p className="text-xs text-charcoal-light group-hover:text-white/70 transition-colors leading-loose max-w-[200px] uppercase tracking-wider font-light">
+                <p className="text-xs text-charcoal-light leading-loose max-w-[200px] uppercase tracking-wider font-bold italic">
                   {detail.location}
                 </p>
               </div>
 
               <button 
                 onClick={() => setActiveMap(detail.mapUrl)}
-                className="mt-auto flex items-center gap-3 text-xs uppercase tracking-[0.3em] font-medium text-gold py-5 px-10 border border-gold/20 group-hover:border-white/20 group-hover:text-white transition-all duration-300"
+                className="mt-auto flex items-center gap-3 text-xs uppercase tracking-[0.3em] font-bold text-gold py-5 px-10 border border-gold/20 rounded-xl hover:bg-gold hover:text-white transition-all duration-500 shadow-md group-hover:shadow-lg"
               >
                 View Map <ChevronRight size={14} />
               </button>
-
-              {/* Decorative side accent */}
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-32 bg-gold/10 hidden lg:block" />
             </m.div>
           ))}
         </div>
