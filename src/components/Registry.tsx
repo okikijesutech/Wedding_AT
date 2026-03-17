@@ -300,7 +300,7 @@ export default function Registry() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-32 p-16 glass-dark text-ivory rounded-3xl text-center relative overflow-hidden shadow-2xl"
+          className="mt-32 p-16 bg-charcoal text-ivory rounded-3xl text-center relative overflow-hidden shadow-2xl"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3" />
           <div className="relative z-10 flex flex-col items-center justify-center max-w-2xl mx-auto">
